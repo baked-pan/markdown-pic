@@ -1,0 +1,970 @@
+<!DOCTYPE html><html lang="en"><head>
+<title> C编程注意事项.md---作者:馒头くん</title>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="()">
+<style type="text/css">
+a:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+a:hover,
+a:active {
+  outline: 0;
+}
+a {
+  color: #0088cc;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #005580;
+  text-decoration: underline;
+}
+
+p {
+  margin: 0 0 1.1em;
+}
+
+small {
+  font-size: 85%;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+cite {
+  font-style: normal;
+}
+
+
+h1.story_title {
+	margin: 0.7em 0;
+}
+.story_tags {
+	margin: 0 0 1.2em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0.5em 0;
+	margin: 1.0em 0 .6em 0;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 20px;
+  color: inherit;
+  text-rendering: optimizelegibility;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 40px;
+}
+
+h1 {
+  font-size: 38.5px;
+}
+
+h2 {
+  font-size: 31.5px;
+}
+
+h3 {
+  font-size: 24.5px;
+}
+
+h4 {
+  font-size: 17.5px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 11.9px;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0 0 10px 35px;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-bottom: 0;
+}
+
+
+dl {
+  margin-bottom: 20px;
+}
+
+dt,
+dd {
+  line-height: 20px;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 10px;
+}
+
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #ffffff;
+}
+
+abbr[title],
+abbr[data-original-title] {
+  cursor: help;
+  border-bottom: 1px dotted #999999;
+}
+
+
+blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 20px;
+  border-left: 5px solid #dddddd;
+}
+
+blockquote p {
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 25px;
+}
+
+blockquote small {
+  display: block;
+  line-height: 20px;
+  color: #999999;
+}
+
+blockquote small:before {
+  content: '\2014 \00A0';
+}
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+}
+
+address {
+  display: block;
+  margin-bottom: 20px;
+  font-style: normal;
+  line-height: 20px;
+}
+img {
+	height: auto;
+	max-width: 100%;
+	vertical-align: middle;
+	border: 0;
+}
+
+table {
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+	border: 1px solid rgba(34,36,38,.15);
+}
+.tag.label{
+display: inline-block;
+vertical-align: baseline;
+line-height: 1;
+margin: 0em 0.125em;
+background-color: #e8e8e8;
+border-color: #e8e8e8;
+background-image: none;
+padding: 0.6em 0.8em;
+color: rgba(0, 0, 0, 0.6);
+text-transform: none;
+font-weight: bold;
+border-radius: 0.2857rem;
+box-sizing: border-box;
+font-size: 0.7428rem;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+
+.table th {
+  font-weight: bold;
+}
+
+.table thead th {
+  vertical-align: bottom;
+}
+
+.table caption + thead tr:first-child th,
+.table caption + thead tr:first-child td,
+.table colgroup + thead tr:first-child th,
+.table colgroup + thead tr:first-child td,
+.table thead:first-child tr:first-child th,
+.table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dddddd;
+}
+
+.table .table {
+  background-color: #ffffff;
+}
+
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+  background-color: #f9f9f9;
+}
+
+.table-celled.table tr td,.table-celled.table tr th {
+    border-left: 1px solid rgba(34,36,38,.1)
+}
+
+.table-celled.table tr td:first-child,.table-celled.table tr th:first-child {
+    border-left: none
+}
+
+.toc ul {
+	list-style: none;
+}
+p {
+	line-height: 1.6;
+}
+body>p {
+  margin-bottom: 1.8em;
+}
+body>p>img.center,
+body>p>a>img.center {
+  display: block;
+  margin: 0 auto;
+  background-color: rgba(128,128,128,0.3);
+}
+body {
+	font-family: 'Helvetica Neue', Helvetica, Tahoma, Arial, 'Hiragino Sans GB', STHeiti, "Microsoft YaHei", "微软雅黑", 'WenQuanYi Micro Hei', STXihei, "华文细黑", Heiti, "黑体", SimSun, "宋体", Song, sans-serif;
+  font-size: 1.15em;
+  font-weight: 100;
+//  line-height: 1.8em;
+  color: #2f2f2f;
+}
+em.cjk_emphasis{
+	font-style: normal;
+	font-family: Georgia,"Times New Roman",Times,"楷体","AR PL UKai CN", "NSimSun","Songti SC","SimSun",serif!important;
+}
+body dt,
+body dd {
+  line-height: 1.35em;
+}
+body code, body .xiaoshujiang_code {
+//	background-color: #D6DBDF;
+	border: 0;
+  border-radius: 4px;
+//  color: #2C3E50;
+  font-size: 90%;
+//  padding: 2px 4px;
+}
+code {
+	background-color: #D6DBDF;
+	border-radius: 4px;
+	color: #2C3E50;
+	padding: 2px 4px;
+}
+.xiaoshujiang_code ol{
+	margin-bottom: 0px;
+}
+body h1 {
+  line-height: 1.6;
+}
+body h2 {
+  line-hieght: 1.1;
+}
+body h3 {
+  line-height: 1.1;
+}
+
+/**
+ * Treeview syntax highlighting based on highlight.js
+ * Copyright (c) 2014-2015, Asciidocfx Team, (MIT Licensed)
+ * https://github.com/asciidocfx/highlight-treeview.js
+ */
+.language-treeview.hljs{
+  position: relative;
+}
+.hljs-folder,
+.hljs-hiddenfile,
+.hljs-file {
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    height: 16px;
+}
+.hljs-folder:before,
+.hljs-file:before,
+.hljs-hiddenfile:before {
+    top: 0;
+    content: '';
+    width: 14px;
+    height: 12px;
+    margin-top: 0px;
+    margin-right: 3px;
+    position: relative;
+    display: inline-block;
+    background-size: 14px;
+    background-repeat: no-repeat;
+}
+.hljs-file:before,
+.hljs-hiddenfile:before {
+    height: 14px;
+    margin-left: 1px;
+}
+.hljs-hiddenfile {
+    opacity: 0.6;
+}
+.hljs-file.photo:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c5";
+}
+.hljs-file.plain:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f016";
+}
+.hljs-file.source:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c9";
+}
+.hljs-file.archive:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c6";
+}
+.hljs-file.audio:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c7";
+}
+.hljs-file.video:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c8";
+}
+.hljs-file.pdf:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c1";
+}
+.hljs-file.xls:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c3";
+}
+.hljs-file.doc:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c2";
+}
+.hljs-file.ppt:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c4";
+}
+.hljs-folder:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f114";
+}
+.hljs-hiddenfile:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f016";
+}
+.hljs-tvline {
+    margin-left: 6px;
+    position: absolute;
+    text-indent: -99em;
+    padding-bottom: 8px;
+    vertical-align: top;
+    display: inline-block;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: rgb(94, 144, 117);
+}
+.hljs-folder-branch {
+    width: 8px;
+    height: 8px;
+    margin-top: -1px;
+    margin-left: 6px;
+    text-indent: -99em;
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(94, 144, 117);
+}
+.hljs-folder-branch.win {
+    width: 14px;
+    margin-right: 2px;
+}
+.hljs-folder-last-branch {
+    height: 7px;
+    width: 7px;
+    margin-left: 6px;
+    text-indent: -99em;
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(94, 144, 117);
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: rgb(94, 144, 117);
+}
+.hljs-folder-last-branch.win {
+    width: 13px;
+    margin-right: 2px;
+}
+
+
+/**
+ * Treeview syntax highlighting based on highlight.js
+ */
+
+
+.mark{
+	border: 0;
+  background-color: #ddf3e7;
+  border-radius: 4px;
+  color: #29754d;
+  font-size: 90%;
+  padding: 2px 4px;
+}
+.line_mark{
+	border: 1px dashed #3A4C42;
+}
+code .mark, .xiaoshujiang_code .mark{
+	border-radius: 0px;
+	font-size: initial;
+	padding: initial;
+}
+a.attachment{
+	background-color: #ecf0f3;
+	border: 1px solid #bec6cb;
+	display: inline-block;
+	padding: 5px;
+	margin: 2px;
+	min-width: 250px;
+}
+a.attachment i.fa{
+	font-size: 3em;
+  float: left;
+  margin-right: 0.2em;
+}
+a.attachment .filename{
+	vertical-align: top;
+  text-align: left;
+  font-weight: bold;
+}
+a.attachment .filesize{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  opacity: .6;
+  font-size: 80%;
+  white-space: nowrap;
+}
+.checkbox .checked{
+	text-decoration: line-through;
+}
+.flow-chart, .sequence-diagram{
+	text-align: center;
+}
+.plot, .plot-image{
+	text-align: center;
+	min-height: 200px;
+	min-width: 200px;
+}
+
+pre, .xiaoshujiang_pre {
+	line-height: initial !important;
+	word-wrap: break-word;
+	word-break: break-word;
+}
+
+.xiaoshujiang_pre {
+	margin: 1em 0px;
+	font-family: monospace;
+	white-space: pre;
+}
+
+.story_align_left, .story_align_left .story_image_container {
+	text-align: left;
+}
+.story_align_right, .story_align_right .story_image_container {
+	text-align: right;
+}
+.story_align_center, .story_align_center .story_image_container {
+	text-align: center;
+}
+.story_align_justify, .story_align_justify .story_image_container {
+	text-align: justify;
+}
+
+
+/** 
+ * code line nums
+ */
+code.hljs.code_linenums, .xiaoshujiang_code.hljs.code_linenums{
+	position: relative;
+}
+.ol_linenums{
+	padding: 0px;
+	margin-left: 30px;
+	border-left: 1px solid #e0e0e0;
+}
+.li_linenum{
+	line-height: 20px;
+	margin-left: 10px;
+	list-style: none;
+	counter-increment: lines 1;
+}
+.li_linenum.li_list_style{
+	list-style: inherit;
+	margin-left: 5px;
+}
+.li_linenum:before, .li_linenum_before_span{
+	content: counter(lines, decimal);
+  position: absolute;
+  left: 0px;
+  text-align: center;
+  width: 2.5em;
+	opacity: 0.5;
+  vertical-align: top;
+}
+.li_linenum_before_span_hide{
+	display: none;
+}
+.xiaoshujiang_code .code_line_break_hack{
+	margin:0;
+	border:0;
+	border-top:0;
+	border-bottom:0;
+}
+/** 
+ * code line nums
+ */
+.mathjax-container{
+	text-align: center;
+}
+div.mathjax{
+	max-width: 700px;
+	margin: 0 auto;
+	font-size: 14px;
+}
+text{
+	font-size: 14px;
+}
+
+/**
+ * block image
+ */
+
+.story_image_container{
+	text-align: center;
+}
+.story_image_container>.story_image{
+	display: inline-block;
+  position: relative;
+	max-width: 80%;
+}
+.story_image_caption{
+	border-bottom: 1px solid #d9d9d9;
+	display: inline-block;
+	color: #999;
+	padding: 10px;
+}
+.story_image_blank_caption{
+	border-bottom: 0px;
+}
+/**
+.story_image:before, .story_image:after{
+	content: '';
+	position: absolute;
+	z-index: -2;
+	bottom: 13px;
+	left: 10px;
+	width: 50%;
+	height: 20%;
+	border-radius: 10px/90px;
+	box-shadow: 0 15px 10px rgba(0,0,0,0.7);
+	-webkit-transform: rotate(-3deg);
+	-moz-transform: rotate(-3deg);
+	-ms-transform: rotate(-3deg);
+	-o-transform: rotate(-3deg);
+	transform: rotate(-3deg);
+}
+.story_image:after {
+	right: 10px;
+	left: auto;
+	-webkit-transform: rotate(3deg);
+	-moz-transform: rotate(3deg);
+	-ms-transform: rotate(3deg);
+	-o-transform: rotate(3deg);
+	transform: rotate(3deg);
+}
+
+**/
+.story_image>img{
+	border-radius: 0.3125em;
+	box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);
+}
+.story_inline_image>img{
+	max-width: 50%;
+	vertical-align: bottom;
+}
+
+/*
+    Paraíso (light)
+    Created by Jan T. Sott (http://github.com/idleberg)
+    Inspired by the art of Rubens LP (http://www.rubenslp.com.br)
+*/
+
+/* Paraíso Comment */
+.hljs-comment,
+.hljs-title {
+  color: #776e71;
+}
+
+/* Paraíso Red */
+.hljs-variable,
+.hljs-attribute,
+.hljs-tag,
+.hljs-regexp,
+.hljs-name,
+.ruby .hljs-constant,
+.xml .hljs-tag .hljs-title,
+.xml .hljs-pi,
+.xml .hljs-doctype,
+.html .hljs-doctype,
+.css .hljs-id,
+.css .hljs-class,
+.css .hljs-pseudo {
+  color: #ef6155;
+}
+
+/* Paraíso Orange */
+.hljs-number,
+.hljs-preprocessor,
+.hljs-built_in,
+.hljs-literal,
+.hljs-params,
+.hljs-constant {
+  color: #f99b15;
+}
+
+/* Paraíso Yellow */
+.ruby .hljs-class .hljs-title,
+.css .hljs-rule .hljs-attribute {
+  color: #fec418;
+}
+
+/* Paraíso Green */
+.hljs-string,
+.hljs-value,
+.hljs-inheritance,
+.hljs-header,
+.ruby .hljs-symbol,
+.xml .hljs-cdata {
+  color: #48b685;
+}
+
+/* Paraíso Aqua */
+.css .hljs-hexcolor {
+  color: #5bc4bf;
+}
+
+/* Paraíso Blue */
+.hljs-function,
+.python .hljs-decorator,
+.python .hljs-title,
+.ruby .hljs-function .hljs-title,
+.ruby .hljs-title .hljs-keyword,
+.perl .hljs-sub,
+.javascript .hljs-title,
+.coffeescript .hljs-title {
+  color: #06b6ef;
+}
+
+/* Paraíso Purple */
+.hljs-keyword,
+.javascript .hljs-function {
+  color: #815ba4;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #e7e9db;
+  color: #4f424c;
+  padding: 0.5em;
+  -webkit-text-size-adjust: none;
+}
+
+.coffeescript .javascript,
+.javascript .xml,
+.tex .hljs-formula,
+.xml .javascript,
+.xml .vbscript,
+.xml .css,
+.xml .hljs-cdata {
+  opacity: 0.5;
+}
+
+
+
+</style>
+</head><body>
+<div><div class="preview" id="wmd-preview">
+
+	<div class="preview"><p></p><div class="toc">
+<ul>
+<li><a href="#ce7bc96e7a88be6b3a8e6848fe4ba8be9a1b9" data-line="-1">C编程注意事项</a><ul>
+<li><a href="#e4b880e5ae9ee5bda2e5b8b8e9878fe79a84e4b8a4e7a78de8a1a8e7a4bae5bda2e5bc8f" data-line="-1">一.实形常量的两种表示形式</a></li>
+<li><a href="#e4ba8ce5ad97e7aca6e5b8b8e9878f" data-line="-1">二.字符常量</a><ul>
+<li><a href="#1e58d95e69287e58fb7e68bace8b5b7e69da5e79a84e4b880e4b8aae5ad97e7aca6e5a682a" data-line="-1">1.单撇号括起来的一个字符如'a'</a></li>
+<li><a href="#2e8bdace4b989e5ad97e7aca6e5a682205c205c22205cae8ada6e5918aefbc8c5cbe98080e6a0bc205cfe68da2e9a1b5efbc8c5cre59b9ee8bda6efbc8c5cte6b0b4e5b9b3e588b6e8a1a8e7aca6efbc8c5cve59e82e79bb4e588b6e8a1a8e7aca6" data-line="-1">2.转义字符如 \', \", \a(警告)，\b(退格), \f(换页)，\r(回车)，\t(水平制表符)，\v(垂直制表符)</a></li>
+<li><a href="#3e7aca6e58fb7e5b8b8e9878f20define20pi2031416" data-line="-1">3.符号常量 #define PI 3.1416</a></li>
+</ul>
+</li>
+<li><a href="#e4b889e59084e7a78de695b0e68daee58da0e794a8e5ad98e582a8e58d95e58583e79a84e995bfe5baa6" data-line="-1">三.各种数据占用存储单元的长度</a></li>
+<li><a href="#e59b9bce8bf90e7ae97e7aca6" data-line="-1">四.C运算符</a><ul>
+<li><a href="#1e59bbee6a087e6b395e8a1a8e7a4bae7b1bbe59e8b" data-line="-1">1.图标法表示类型</a></li>
+<li><a href="#2e5bcbae588b6e7b1bbe59e8be8bdace68da2e8bf90e7ae97e7aca6" data-line="-1">2.强制类型转换运算符</a><ul>
+<li><a href="#e4b880e888ace5bda2e5bc8fe4b8bae7b1bbe59e8be5908de8a1a8e8bebee5bc8f" data-line="-1">一般形式为(类型名)(表达式)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#e4ba94e69c89e585b3e8be93e585a5e8be93e587bae79a84e6a682e5bfb5" data-line="-1">五.有关输入输出的概念</a><ul>
+<li><a href="#1printf" data-line="-1">1.printf</a><ul>
+<li><a href="#1e6a0bce5bc8f" data-line="-1">(1)格式</a></li>
+<li><a href="#2e8afb4e6988e" data-line="-1">(2)说明</a></li>
+</ul>
+</li>
+<li><a href="#2scanf" data-line="-1">2.scanf</a><ul>
+<li><a href="#e6a0bce5bc8fe5a3b0e6988ee4b88de5ad98e59ca825nfe6a0bce5bc8fe4bd86e5ad98e59ca825mfe6a0bce5bc8f" data-line="-1">格式声明不存在%.nf格式但存在%mf格式</a></li>
+</ul>
+</li>
+<li><a href="#3putcharc" data-line="-1">3.putchar(c)</a></li>
+<li><a href="#4getchar" data-line="-1">4.getchar()</a></li>
+</ul>
+</li>
+<li><a href="#e585adasciie7a081" data-line="-1">六.ASCII码</a><ul>
+<li><a href="#1e5a4a7e58699e5ad97e6af8d32e5b08fe58699e5ad97e6af8d" data-line="-1">1.大写字母+32=小写字母</a></li>
+</ul>
+</li>
+<li><a href="#e4b883e6b581e7a88be59bbe" data-line="-1">七.流程图</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p></p>
+<h1 id="ce7bc96e7a88be6b3a8e6848fe4ba8be9a1b9"><a name="ce7bc96e7a88be6b3a8e6848fe4ba8be9a1b9"></a>C编程注意事项</h1>
+<h2 id="e4b880e5ae9ee5bda2e5b8b8e9878fe79a84e4b8a4e7a78de8a1a8e7a4bae5bda2e5bc8f"><a name="e4b880e5ae9ee5bda2e5b8b8e9878fe79a84e4b8a4e7a78de8a1a8e7a4bae5bda2e5bc8f"></a>一.实形常量的两种表示形式</h2>
+<ul>
+<li><p>十进制小数形式</p></li>
+<li><p><strong>指数形式</strong> <code>12.34e3</code>代表<code>12.34x10^3</code>，<code>-3e-3</code>表示<code>-3x10^-3</code></p></li>
+</ul>
+<hr>
+<h2 id="e4ba8ce5ad97e7aca6e5b8b8e9878f"><a name="e4ba8ce5ad97e7aca6e5b8b8e9878f"></a>二.字符常量</h2>
+<h3 id="1e58d95e69287e58fb7e68bace8b5b7e69da5e79a84e4b880e4b8aae5ad97e7aca6e5a682a"><a name="1e58d95e69287e58fb7e68bace8b5b7e69da5e79a84e4b880e4b8aae5ad97e7aca6e5a682a"></a>1.单撇号括起来的<strong>一个</strong>字符如<code>'a'</code></h3>
+<h3 id="2e8bdace4b989e5ad97e7aca6e5a682205c205c22205cae8ada6e5918aefbc8c5cbe98080e6a0bc205cfe68da2e9a1b5efbc8c5cre59b9ee8bda6efbc8c5cte6b0b4e5b9b3e588b6e8a1a8e7aca6efbc8c5cve59e82e79bb4e588b6e8a1a8e7aca6"><a name="2e8bdace4b989e5ad97e7aca6e5a682205c205c22205cae8ada6e5918aefbc8c5cbe98080e6a0bc205cfe68da2e9a1b5efbc8c5cre59b9ee8bda6efbc8c5cte6b0b4e5b9b3e588b6e8a1a8e7aca6efbc8c5cve59e82e79bb4e588b6e8a1a8e7aca6"></a>2.转义字符如 <code>\'</code>, <code>\"</code>, <code>\a</code>(警告)，<code>\b</code>(退格), <code>\f</code>(换页)，<code>\r</code>(回车)，<code>\t</code>(水平制表符)，<code>\v</code>(垂直制表符)</h3>
+<h3 id="3e7aca6e58fb7e5b8b8e9878f20define20pi2031416"><a name="3e7aca6e58fb7e5b8b8e9878f20define20pi2031416"></a>3.符号常量 <code>#define PI 3.1416</code></h3>
+<hr>
+<h2 id="e4b889e59084e7a78de695b0e68daee58da0e794a8e5ad98e582a8e58d95e58583e79a84e995bfe5baa6"><a name="e4b889e59084e7a78de695b0e68daee58da0e794a8e5ad98e582a8e58d95e58583e79a84e995bfe5baa6"></a>三.各种数据占用存储单元的长度</h2>
+<p><code>sizeof(short)《sizeof(int)《sizeof(long)《sizeof(long long )</code></p>
+<table class="table table-striped table-celled  ">
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:center">字节数</th>
+<th style="text-align:center">有效数字</th>
+<th>数值范围(绝对值)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">float</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">6</td>
+<td>0以及1.2e-38~3.4e38</td>
+</tr>
+<tr>
+<td style="text-align:left">double</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">15</td>
+<td>0以及2.3e-308~1.7e308</td>
+</tr>
+<tr>
+<td style="text-align:left">long double</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">15</td>
+<td>0以及2.3e-308~1.07e308</td>
+</tr>
+<tr>
+<td style="text-align:left">long double</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">19</td>
+<td>0以及3.4e-4932~1.1e4932</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="e59b9bce8bf90e7ae97e7aca6"><a name="e59b9bce8bf90e7ae97e7aca6"></a>四.C运算符</h2>
+<h3 id="1e59bbee6a087e6b395e8a1a8e7a4bae7b1bbe59e8b"><a name="1e59bbee6a087e6b395e8a1a8e7a4bae7b1bbe59e8b"></a>1.图标法表示类型</h3>
+<blockquote>
+<p>在这里<code>|</code>用<code>1</code>代替了</p>
+</blockquote>
+<table class="table table-striped table-celled  ">
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:center">表示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">算数运算符</td>
+<td style="text-align:center">+  -   *  /  %  ++  --</td>
+</tr>
+<tr>
+<td style="text-align:left">关系运算符</td>
+<td style="text-align:center">&gt;  &lt;  == &gt;=  &lt;=  !=</td>
+</tr>
+<tr>
+<td style="text-align:left">逻辑运算符</td>
+<td style="text-align:center">！ &amp;&amp; 11(这里原为两竖线)</td>
+</tr>
+<tr>
+<td style="text-align:left">位运算符</td>
+<td style="text-align:center">&lt;&lt; &gt;&gt; ~ 1 ^ &amp;</td>
+</tr>
+<tr>
+<td style="text-align:left">赋值运算符</td>
+<td style="text-align:center">=及其扩展赋值运算符</td>
+</tr>
+<tr>
+<td style="text-align:left">条件运算符</td>
+<td style="text-align:center">？ ：</td>
+</tr>
+<tr>
+<td style="text-align:left">逗号运算符</td>
+<td style="text-align:center">，</td>
+</tr>
+<tr>
+<td style="text-align:left">指针运算符</td>
+<td style="text-align:center">* &amp;</td>
+</tr>
+<tr>
+<td style="text-align:left">求字节运算符</td>
+<td style="text-align:center">sizeof</td>
+</tr>
+<tr>
+<td style="text-align:left">强调类型转换运算符</td>
+<td style="text-align:center">（类型）</td>
+</tr>
+<tr>
+<td style="text-align:left">成员运算符</td>
+<td style="text-align:center">. -&gt;</td>
+</tr>
+<tr>
+<td style="text-align:left">下标运算符</td>
+<td style="text-align:center">[]</td>
+</tr>
+<tr>
+<td style="text-align:left">其他</td>
+<td style="text-align:center">如函数调用运算符()</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="2e5bcbae588b6e7b1bbe59e8be8bdace68da2e8bf90e7ae97e7aca6"><a name="2e5bcbae588b6e7b1bbe59e8be8bdace68da2e8bf90e7ae97e7aca6"></a>2.强制类型转换运算符</h3>
+<h4 id="e4b880e888ace5bda2e5bc8fe4b8bae7b1bbe59e8be5908de8a1a8e8bebee5bc8f"><a name="e4b880e888ace5bda2e5bc8fe4b8bae7b1bbe59e8be5908de8a1a8e8bebee5bc8f"></a>一般形式为<code>(类型名)(表达式)</code></h4>
+<div class="xiaoshujiang_pre xiaoshujiang_code_container"><div class="language-c hljs cpp code_linenums xiaoshujiang_code"><ol start="1" class="ol_linenums" style="counter-reset: lines 0;"><li class="li_linenum " date-linenum="1"><span class="li_linenum_before_span li_linenum_before_span_hide">1</span>  (<span class="hljs-keyword">double</span>) a&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="2"><span class="li_linenum_before_span li_linenum_before_span_hide">2</span>  (<span class="hljs-keyword">int</span>) (x+y)&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="3"><span class="li_linenum_before_span li_linenum_before_span_hide">3</span>  (<span class="hljs-keyword">float</span>)(<span class="hljs-number">5</span>%<span class="hljs-number">3</span>)&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li></ol></div></div>
+<h2 id="e4ba94e69c89e585b3e8be93e585a5e8be93e587bae79a84e6a682e5bfb5"><a name="e4ba94e69c89e585b3e8be93e585a5e8be93e587bae79a84e6a682e5bfb5"></a>五.有关输入输出的概念</h2>
+<ul>
+<li><p>输入输出是以<strong>电脑</strong>为主体</p></li>
+<li><p>c语言本身<s>不提供</s>输入输出语句</p></li>
+</ul>
+<h3 id="1printf"><a name="1printf"></a>1.printf</h3>
+<h4 id="1e6a0bce5bc8f"><a name="1e6a0bce5bc8f"></a>(1)格式</h4>
+<div class="xiaoshujiang_pre xiaoshujiang_code_container"><div class="nohighlight hljs code_linenums xiaoshujiang_code"><ol start="1" class="ol_linenums" style="counter-reset: lines 0;"><li class="li_linenum " date-linenum="1"><span class="li_linenum_before_span li_linenum_before_span_hide">1</span>+ `%xd` 用来输出占x列的数据&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="2"><span class="li_linenum_before_span li_linenum_before_span_hide">2</span>+ `%s` 输出一串字符串如`printf("%s","CHINA")；`&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="3"><span class="li_linenum_before_span li_linenum_before_span_hide">3</span>+ `f`格式符&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="4"><span class="li_linenum_before_span li_linenum_before_span_hide">4</span>  + `%f `整数全输出，小数保留**6**位&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="5"><span class="li_linenum_before_span li_linenum_before_span_hide">5</span>  + `%m.nf` 用来输出占m列，其中小数占n列的数据&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="6"><span class="li_linenum_before_span li_linenum_before_span_hide">6</span>  + `%-m.nf` 向左对齐，当数据长度不超过m时，数据向**左靠**，**右端补空格**&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li></ol></div></div>
+<ul>
+<li><p><code>%e(E)</code>表示指数如<code>1.1e13</code>表示<code>1.1x10^13</code></p></li>
+<li><p><code>%i</code>按照十进制实际长度输出</p></li>
+<li><p><code>%o</code> 八进制输出</p></li>
+<li><p><code>%x</code> 十六进制输出</p></li>
+<li><p><code>%u</code> 无符号(unsigned)数据以十进制输出</p></li>
+<li><p><code>%g</code> 输出浮点数，系统选择f或e格式输出(较短的)，不输出<s>0</s>，若输出指数则E大写</p></li>
+</ul>
+<h4 id="2e8afb4e6988e"><a name="2e8afb4e6988e"></a>(2)说明</h4>
+<div class="xiaoshujiang_pre xiaoshujiang_code_container"><div class="nohighlight hljs code_linenums xiaoshujiang_code"><ol start="1" class="ol_linenums" style="counter-reset: lines 0;"><li class="li_linenum " date-linenum="1"><span class="li_linenum_before_span li_linenum_before_span_hide">1</span>printf("c=%cf=%fs=%s",c,f,s);&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="2"><span class="li_linenum_before_span li_linenum_before_span_hide">2</span>&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li></ol></div></div>
+<div class="xiaoshujiang_pre xiaoshujiang_code_container"><div class="nohighlight hljs code_linenums xiaoshujiang_code"><ol start="1" class="ol_linenums" style="counter-reset: lines 0;"><li class="li_linenum " date-linenum="1"><span class="li_linenum_before_span li_linenum_before_span_hide">1</span> 第一个格式声明为`%c`~~不包括~~其后的字母`f`;第二个格式声明为`%f`~~不包括~~后边的`s`;第三个格式声明为`%s`&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li></ol></div></div>
+<p><strong>如果输出字符%应该在“格式控制字符串”中连用两个“%”表示，如:</strong></p>
+<div class="xiaoshujiang_pre xiaoshujiang_code_container"><div class="nohighlight hljs code_linenums xiaoshujiang_code"><ol start="1" class="ol_linenums" style="counter-reset: lines 0;"><li class="li_linenum " date-linenum="1"><span class="li_linenum_before_span li_linenum_before_span_hide">1</span>printf("%f%%",1.0/3);&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li></ol></div></div>
+<p><strong>输出</strong> <code>0.333333%</code></p>
+<h3 id="2scanf"><a name="2scanf"></a>2.scanf</h3>
+<h4 id="e6a0bce5bc8fe5a3b0e6988ee4b88de5ad98e59ca825nfe6a0bce5bc8fe4bd86e5ad98e59ca825mfe6a0bce5bc8f"><a name="e6a0bce5bc8fe5a3b0e6988ee4b88de5ad98e59ca825nfe6a0bce5bc8fe4bd86e5ad98e59ca825mfe6a0bce5bc8f"></a>格式声明不存在<code>%.nf</code>格式但存在<code>%mf</code>格式</h4>
+<h3 id="3putcharc"><a name="3putcharc"></a>3.putchar(c)</h3>
+<div class="xiaoshujiang_pre xiaoshujiang_code_container"><div class="language-c hljs cpp code_linenums xiaoshujiang_code"><ol start="1" class="ol_linenums" style="counter-reset: lines 0;"><li class="li_linenum " date-linenum="1"><span class="li_linenum_before_span li_linenum_before_span_hide">1</span><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span>&lt;stdio.h&gt;</span>&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="2"><span class="li_linenum_before_span li_linenum_before_span_hide">2</span><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="3"><span class="li_linenum_before_span li_linenum_before_span_hide">3</span><span class="hljs-function"></span>{&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="4"><span class="li_linenum_before_span li_linenum_before_span_hide">4</span><span class="hljs-keyword">char</span> a=<span class="hljs-string">'B'</span>,b=<span class="hljs-string">'O'</span>,c=<span class="hljs-string">'Y'</span>;<span class="hljs-comment">//这里用int a=66,b=79,c=89也可以</span>&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="5"><span class="li_linenum_before_span li_linenum_before_span_hide">5</span><span class="hljs-built_in">putchar</span>(a);<span class="hljs-comment">//同putchar('\66')</span>&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="6"><span class="li_linenum_before_span li_linenum_before_span_hide">6</span><span class="hljs-built_in">putchar</span>(b);&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="7"><span class="li_linenum_before_span li_linenum_before_span_hide">7</span><span class="hljs-built_in">putchar</span>(c);&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="8"><span class="li_linenum_before_span li_linenum_before_span_hide">8</span><span class="hljs-built_in">printf</span>(<span class="hljs-string">'\n'</span>);<span class="hljs-comment">//同putchar('\015')，这里015是八进制</span>&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="9"><span class="li_linenum_before_span li_linenum_before_span_hide">9</span><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="10"><span class="li_linenum_before_span li_linenum_before_span_hide">10</span>}&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li></ol></div></div>
+<p><strong>运行结果:</strong><code>BOY</code></p>
+<h3 id="4getchar"><a name="4getchar"></a>4.getchar()</h3>
+<div class="xiaoshujiang_pre xiaoshujiang_code_container"><div class="language-c hljs cpp code_linenums xiaoshujiang_code"><ol start="1" class="ol_linenums" style="counter-reset: lines 0;"><li class="li_linenum " date-linenum="1"><span class="li_linenum_before_span li_linenum_before_span_hide">1</span><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span>&lt;stdio.h&gt;</span>&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="2"><span class="li_linenum_before_span li_linenum_before_span_hide">2</span><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="3"><span class="li_linenum_before_span li_linenum_before_span_hide">3</span><span class="hljs-function"></span>{&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="4"><span class="li_linenum_before_span li_linenum_before_span_hide">4</span><span class="hljs-keyword">char</span> a,b,c;&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="5"><span class="li_linenum_before_span li_linenum_before_span_hide">5</span>a=getchar();&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="6"><span class="li_linenum_before_span li_linenum_before_span_hide">6</span>b=getchar();&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="7"><span class="li_linenum_before_span li_linenum_before_span_hide">7</span>c=getchar();&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="8"><span class="li_linenum_before_span li_linenum_before_span_hide">8</span><span class="hljs-built_in">putchar</span>(a);&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="9"><span class="li_linenum_before_span li_linenum_before_span_hide">9</span><span class="hljs-built_in">putchar</span>(b);&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="10"><span class="li_linenum_before_span li_linenum_before_span_hide">10</span><span class="hljs-built_in">putchar</span>(c);&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="11"><span class="li_linenum_before_span li_linenum_before_span_hide">11</span><span class="hljs-built_in">putchar</span>(<span class="hljs-string">'\n'</span>);&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="12"><span class="li_linenum_before_span li_linenum_before_span_hide">12</span><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li><li class="li_linenum " date-linenum="13"><span class="li_linenum_before_span li_linenum_before_span_hide">13</span>}&nbsp;<hr class="code_line_break_hack" style="margin:0;border:0;border-top:0;border-bottom:0;"></li></ol></div></div>
+<p><strong>运行结果</strong>：<br>
+<code>boy</code><br>
+<code>boy</code><br>
+<strong>需连续输入，若输入一个字符后按Enter键，则：</strong><br>
+<code>b</code><br>
+<code>o</code><br>
+<code>b</code><br>
+<code>o</code><br>
+<strong>解释： <code>b</code>赋予了<code>a</code>,<code>换行符</code>赋予了<code>b</code>,<code>o</code>赋予了<code>c</code>，输出时按顺序输出<code>b</code>，<code>换行符</code>，<code>o</code></strong></p>
+<h2 id="e585adasciie7a081"><a name="e585adasciie7a081"></a>六.ASCII码</h2>
+<h3 id="1e5a4a7e58699e5ad97e6af8d32e5b08fe58699e5ad97e6af8d"><a name="1e5a4a7e58699e5ad97e6af8d32e5b08fe58699e5ad97e6af8d"></a>1.大写字母+32=小写字母</h3>
+<h2 id="e4b883e6b581e7a88be59bbe"><a name="e4b883e6b581e7a88be59bbe"></a>七.流程图</h2>
+<p>###1.判断方程的根</p>
+<div class="flow-chart"><img class="svg-image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUUAAAI+CAYAAAAreRjCAAAgAElEQVR4Xu2dC9AV5Znn/wQNoJGLl+yOSwlkndLKuAgREx3uhRG0mAUqMisCAQQFEeQWMKIIiMAiclM0chMYxVtE0HGNO2wCiJTGREATxmLcLUC0BochgJFLHJSt5/WcY3/9nXP6ec/pPt1v97+rvuLyPeftt3/Pe37nvXWfBuBBAiRAAiRQINCALEiABEiABL4hQCmyNZAACZCAhwClyOZAAiRAApQi2wAJkAAJFCfAniJbBgmQAAmwp8g2QAIkQALsKbINkAAJkEAgAQ6fAxExgARIIEsEKMUsZZvXSgIkEEiAUgxExAASIIEsEaAUs5RtXisJkEAgAUoxEBEDSIAEskSAUsxStnmtJEACgQQoxUBEDCABEsgSAUoxS9nmtZIACQQSoBS/RtQOwJW5P+Xv1Ry7AMjPe7k/qymLryUBEqgxgSxLUeQ3BMBQAM0j4n4UwBoAaynIiAizWBIImUAWpdgNwHQA8mctjy0AZgKQP3mQAAkklECWpCg9w0XFZHjllVeiXbt2hZ9qcrVr1y7kf957T0bQ9Q6R4gT2HKuhzNeSQHQEsiLFcQAWezG2atUKffv2xdChQ40MozhEjmvWrDE/x44d855ChtUzACyJ4rwskwRIoHICWZDi6ty8oaHUrFkzjB8/3vw0bx7VVGLdhBw9ehSLFy82Pz45ynzjsMrTx1eSAAmETSDNUhTjbc6tKBtuffr0Mb22WsnQnyyRo/RMX375Ze+vZKW6OwDpPfIgARKImUCapbjTK8TVq1cbISXhkB7jhAkyrVg4ZJ5RxMiDBEggZgJplWKdIXOShJjPt/RYhw2rM3KW+cXxMbcHnp4EMk8gjVLsC2BDPrNJFGIZMfYDsDHzrZIASCBGAmmToswjyrC5tTAdMmSImUNM8iFD+rVrZW+3OfYBaM/5xSRnjHVLO4G0SVG2ucjGbMiWG9kSE9eiirbhyOKLbAnav39//iWywVuugwcJkEAMBNIkRekl7s3fspfkYbM/z775RVmFbsPeYgzvBp6SBACkSYqytCwLLKaXuG+fjETdOVq3bu3tLcoKTLLH/e6gZU1JwIpAmqQoCxR95OrD6iUeP34cp0+fNhu+Kz20Zfh6i7KRURaMeJAACdSYQJqkeCbPbu/evZCeV7nj5MmTZoFDZPTb3/4Wl112mdnHOHz4cFx00UU4deoUJk2ahFtuuQUdO3asKC02ZUjPtk0bGTUXjjTlpiJ+fBEJxEEgLW88eeKN3L0CebiDLLCUO7788kssXLgQ0osbN24cWrRoYf6+cuVKvPXWW/jFL36Bxo0bmw3WgwcPrliKIl6bMmTBxfMQCVmFLn8hcbQYnpMEUk4gLVIszCfKrXwbN5bf6nf48GEMHDgQ06ZNqyO8f//3fze9xcmTJ+PZZ5/FsmXLTPqffvppEy+ynTNnDl5//XXz/7169cLUqVPN6rGUec899+CKK67AzJkzTY9TVpZXrFhRp4xy7UkeUOG5BZDziil/8/HykkkgLVIsbMWZPn06Zswov6Ml34M755xzcNddd5mFmQYN6qLw9/I++ugjjBw50gize/fu+Pzzz3H33Xeb1y1YsMD0NEWcMtT+2c9+hjNnzpjf2fQUpd4i1NzBrTnJfM+wViknkEkpSk4PHDiA++67D//wD/9g5hN79OhhHhjRuXNnNGnSBJqh77p167Bt2zYsWrQIJ06cMFKUnmOXLl1Ms9GU4W1flGLK3228PCcIZFaK+ewcOXIEv/vd77B582YzZJahsAybmzZtWq+XJ5LbsWMH3nnnHbz//vtm/rFbt251pOgdklOKTrwHWEkSqEMgLVKUBynIU7WrurVP5gBlOC1D4J/+9Kd1pHjo0CGMHj0aZ599Nnr37o327dsbKYogvT3FaqTou+VPHqNT58G4bLskQALRE0iLFAurz127dsWWLeW/BuXtt9/Ggw8+aLbjXHjhhXUoz5o1C9/5zncwatSoOlLctGkTXnjhBSxZsgQyFymH9Ch37twZmhSl17l169Z8feRRYvw+l+jfAzwDCaSypyi3+B3xDonL3fMsiyJTpkwxcpMncF988cWQbToyjJ43bx7mz5+Pli1bGinKPOP1118PEanM+S1fvtwszGzfvh1jx45F27Zt8dhjj+GLL76ot6KdHz7ny2jYsGHJ5ie9VNka5DnS8oHFtxwJOEUgTW882dMn392MDRs2mO9fKXeIGGWR5fnnnze9s/PPPx8/+clPzEJJfuP3L3/5S9NjFHHKdptVq1Zh7ty5ptj+/fub+cSlS5ea/2/UqFHRbT7eMmRoXeqQbUT9+smTw8wh33gVzRfHONU8WVkSqD2BNEmxMK8ospKFE5cO2ebjGfZzPtGl5LGuqSKQJinKfX3ylBxziBRFji4cIkORoueQ+/3ceqKFC6BZRxJQEEiTFOVy5ckyQ+QvLvUWfb1EeeJsMr5MRtGAGEICaSOQNilKb1HmFs1jbWSrjMwHJvnwfYmVfDm0zCWyl5jkpLFuqSaQNilKsgq3/Mk/ZMtMVF92X23LkHupZb+j5+CtfdVC5etJoEoCaZSiICmsRMvWHJlfTJoYRYgybJatOLlDNii6MQlaZaPjy0kgyQTSKkXZtyhibCXwkybGIkKUL2iRYXPBkEluNKwbCaSZQFqlKDkTycgdIYXHZsv8nTw/Mc5D7ojxzXPKPKL0EPnsxDgTw3OTQI5AmqUolygLL/JwRbOpWw5ZlZbHi9V6u45su5HHgvluQZRN2iJE9hD5liSBhBBIuxTN6Dm3Vcd8f4tXjtJjk1vwojzkobHSQy1yP7Z8D4tsvaEQo0wAyyYBSwJZkGIeiQhInjpT51uoZL5Rnk4jCzHyVQbVLsjIfKF8pYBIUG7d8yyk5Oshw2XZJ8Rv67NsrAwngVoQyJIU871GEZL8BH5Fn3aIHfRUnlwiRYYiZflh77AWrZvnIIEKCGRNinlEMqSWnqP8FOYbK+CneYnMG0qvUH4oQw0xxpBAjASyKkUvclmMkUfqyGq1/FQrSZGgrCTLjyzy8O6UGBs4T00CtgQoxfLEvJup5Z7q/D3J0uuTe5TzBx8Ga9vyGE8CCSVAKeoTMz13C6G8grfj6bkxkgScIkAp6tNFKepZMZIEnCVAKepTRynqWTGSBJwlQCnqU0cp6lkxkgScJUAp6lPnfSQZ5xT13BhJAk4RoBT16WJPUc+KkSTgLAFKUZ86SlHPipEk4CwBSlGfOkpRz4qRJOAsAUpRnzpKUc+KkSTgLAFKUZ86SlHPipEk4CwBSlGfOq4+61kxkgScJUAp6lPHnqKeFSNJwFkClKI+dZSinhUjScBZApSiPnWUop4VI0nAWQKUoj51lKKeFSNJwFkClKI+dVxo0bNiJAk4S4BS1KeOPUU9K0aSgLMEKEV96ihFPStGkoCzBChFfeooRT0rRpKAswQoRX3qKEU9K0aSgLMEKEV96ihFPStGkoCzBChFfeq4+qxnxUgScJYApahPHaWoZ8VIEnCWAKWoTx2Hz3pWjCQBZwlQivrUUYp6VowkAWcJUIr61FGKelaMJAFnCVCK+tRRinpWjCQBZwlQivrUcaFFz4qRJOAsAUpRnzr2FPWsGEkCzhKgFPWpoxT1rBhJAs4SoBT1qaMU9awYSQLOEqAU9anjnKKeFSNJwFkClKI+dZSinhUjScBZApSiPnWUop4VI0nAWQKUoj51lKKeFSNJwFkClKI+dZSinhUjScBZApSiPnWUop4VI0nAWQKUoj51lKKeFSNJwFkClKI+dZSinhUjScBZApSiPnWUop4VI0nAWQKUoj51lKKeFSNJwFkClKI+dZSinhUjScBZApSiPnWUop4VI0nAWQKUoj51lKKeFSNJwFkClKI+dZSinhUjScBZApSiPnWUop4VI0nAWQKUoj51lKKeFSNJwFkClKI+dZSinhUjScBZApSiPnWUop4VI0nAWQKUoj51lKKeFSNJwFkClKI+dZSinhUjScBZApSiPnWUop4VI0nAWQKUoj51lKKeFSNJwFkClKI+dZSinhUjScBZApSiPnWUop4VI0nAWQKUoj51lKKeFSNJwFkClGL51A0HMDgX0hpAq9zf9wPYl/v7UwBWOdsCWHESIIE6BCjF4AaxG8D3S4T9M4C/CS6CESRAAq4QoBSDMyW9xZUlwkawlxgMkBEk4BIBSlGXrWK9RfYSdewYRQJOEaAUdekq1ltkL1HHjlEk4BQBSlGfLm9vkb1EPTdGkoBTBChFfbq8vUX2EvXcGEkCThFImhS9216SCHJNrlJDk1i5iOu0NeLyWTwJJIJA0qS4GUC3RJBhJbwE1gLI4gcBW0EGCSRJivKmW53BHCT9ko8BaOfZrJ70+rJ+JFAVgSRJcS8AGT7jyiuvRPPmzau6ML64cgJbt9YZKc8EILc48iCBTBBIihQL9xU3a9YM+/btoxRjan4zZszAzJniQXNIL1E+qI7GVB2elgRqTiAJUpQuofQSTddw9erVGDqU01c1bwlivqNH0aZNG/Nn7hgGIL+4FEeVeE4SqDmBJEhxMYBxcuWtWrUyvUQe8RAYP348lixZkj+5PPTCTGfwIIEsEYhbivKmk16iOTZv3oxu3bj4HEcDlA8j6SV6ju4AtsRRF56TBOIkELcUNwDoKwC6du2KLVv4HoyrMfTr1w8bN27Mn15WWvjpFFcyeN5YCcQpRXnTyb5Ec+zcuRPt2snODx61JiAfRt27S8ewcLQHsKvW9eD5SCAJBOKUYmGj9pAhQ7BmDefz42oQIkRPL50bteNKBM+bCAJxSbGwUVu24OzatQutW3NOP44WIR9Gw4bJIrM5uFE7jiTwnIkiEJcUCxu1p0+fDtkbxyMeArK44lnx50bteNLAsyaIQBxSDHWjdoMGDXDmzJmiSMv9zvsCbVyC8hZKVbhROxSMLCRlBGotxdA3apcSWv7/tcLTxqUl/9yonZZM8jrCJlBrKYa6UVtE5j3yPUa/4DTC08TYwj98+DAGDhyIadOmoWPHjrYvjzSeG7UjxcvCHSZQSylGslFbK0CN9DQxNrlOqhS5Udsmi4zNGoFaSjH0jdqlhOjvQUpSpRcZJL2g30s5slI+Z84cvP7666at9OrVC1OnTi26xzIvxS5dupj43bt3Y9SoUZg0aRLOP//8om3t4MGDePjhh8094Oeddx4mTJiA22+/HU2aNAmtbXKjdmgoWVAKCdRKipFs1LadNyyXP01ZH330EUaOHInJkyebzc6ff/457r77biPbBQsWoHHjxnVOkZei/P9jjz1mnvwzf/5887rZs2ejUaNGdeKPHz+OMWPG4Nprr4Xs3Txx4gSmTJmCa665BsOHy7chVH9wo3b1DFlCugnUSoqRbNQuNqdYap5R0qhZqdb0Fr1NYt26ddi2bRsWLVpUrzcnUhw0aBDuu+++wpzi3r17IfN5ItFLL720Tut69913MWvWLKxcuRIXXnhhJC2PG7UjwcpCU0SgFlKMfKO2V2TF/h7UC9TOS0reT548iR07duCdd97B+++/j7feess8xKKUFKXnJ1tfLrvsMtNsys0zvvLKK3jttdeKlhVGm+NG7TAosoy0E6iFFCPfqO0XoTdp3rnEoO07+deVijt06BBGjx6Ns88+G71790b79u2NFEWQNlKU3qNsWpdhsfeIWorcqJ32tzOvLwwCUUsx1I3apS44P2T2L6b4e4jFZKcVpZx706ZNeOGFF8wzB8855xxTnWXLlpmHWZSS4q233op7770XP/zhD038nj17zDzhI488Yp4f6T2iHD5zo3YYbxeWkQUCUUox9I3a/oR45w+9exRteoo2Uty+fbsZCi9fvtwITf49duxYtG3b1iykyGqx98gPlS+55BKzsCILLvKo/wsuuMCIsWHDhnXiZWg+ceJEdOjQwcxFfvXVV0a2p06dMj1Lf7y2gXKjtpYU40gAiFKKoW7ULpesSucUgxZV/L8/ffo0Vq1ahblz55rq9O/f38wnLl261Px/ixYtzBaazp07m03bIkWZU7zuuuuwdu1asyVHJCqr1+eee66Zn/TGS5kyRJ83b15hS47IUURZaguPphFzo7aGEmNI4GsCUUkxko3a5YbPxe5mKbeAEiTE/Lm0cfl4GUrv378fffuaZ+cGHrbxgQX6ArhR25YY47NOICophr5R27an6J9nzL9es4nbfy4bMUqPUG7p82+3KVV/23jbBsuN2rbEGJ91AlFIMZKN2llPVCXXz43alVDja7JOIAopRrJRO+uJquT6uVG7Emp8TdYJhC3FyDdqZz1h2uvnRm0tKcaRQF0CYUsx8o3aTKCOADdq6zgxigTqrSGEiKQmG7VDrG9qi+JG7dSmlhdWAwJh9RQj36hdAxapOAU3aqcijbyIGAmEJcWabdSOkZUTp+ZGbSfSxEommEAYUqzpRu0Es4y9atyoHXsKWIEUEAhDijXdqJ0C5pFdAjdqR4aWBWeIQLVSrLNRe/HixUUfy58hnrFdqvQShw6VHVGFo718e0JsFeKJScBRAtVKsbBR29HrT2u11wKoY8i0XiiviwTCJlCNFAsbtcOuFMurisAxAO0A7KuqFL6YBDJKoBoprgEgiyxZOeSJsPnr3Z9g6WwEILsBeJAACVRAoBopVnA6p18yHYBsUJdjpufvTl8UK08CJFCXAKWobxGUop4VI0nAWQKUoj51lKKeFSNJwFkClKI+dZSinhUjScBZApSiPnWUop4VI0nAWQKUoj51hacAcaFFD42RJOAaAUpRnzH2FPWsGEkCzhKgFPWpoxT1rBhJAs4SoBT1qaMU9awYSQLOEqAU9amjFPWsGEkCzhKgFPWp40KLnhUjScBZApSiPnWUop4VI0nAWQKUoj51HD7rWTGSBJwlQCnqU0cp6lkxkgScJUAp6lNHKepZMZIEnCVAKepTxzlFPStGkoCzBChFfeooRT0rRpKAswQoRX3qOHzWs2IkCThLgFLUp45S1LNiJAk4S4BS1KeOUtSzYiQJOEuAUtSnjlLUs2IkCThLgFLUp45S1LNiJAk4S4BS1KeOq896VowkAWcJUIr61LGnqGfFSBJwlgClqE8dpahnxUgScJYApahPHaWoZ8VIEnCWAKWoTx2lqGfFSBJwlgClqE8dpahnxUgScJYApahPHaWoZ8VIEnCWAKWoTx2lqGfFSBJwlgClqE8dpahnxUgScJYApahPHaWoZ8VIEnCWAKWoTx3vaNGzYiQJOEuAUtSnjlLUs2IkCThLgFLUp45S1LNiJAk4S4BS1KeOUtSzYiQJOEuAUtSnjlLUs2IkCThLgFLUp45S1LNiJAk4S4BS1KeOUtSzYiQJOEuAUtSnjlLUs2IkCThLgFLUp45S1LNiJAk4S4BS1KeOUtSzYiQJOEuAUtSnjlLUs2IkCThLgFLUp45S1LNiJAk4S4BS1KeOUtSzYiQJOEuAUtSnjlLUs2IkCThLgFLUp45S1LNiJAk4S4BS1KeOUtSzYiQJOEuAUtSnjlLUs2IkCThLgFLUp45S1LNiJAk4S4BS1KeOUtSzYiQJOEuAUtSnjlLUs2IkCThLgFLUp45S1LNiJAk4S4BS1KeOUtSzYiQJOEuAUtSnjlLUs2IkCThLgFLUp45S1LNiJAk4S4BS1KeOUtSzYiQJOEuAUiyfumsAvBWQ3WsBvO1sC2DFSYAE6hCgFIMbxAsA+pcI+yWAvw8ughEkQAKuEKAUgzNVrrfIXmIwP0aQgFMEKEVduor1FtlL1LFjFAk4RYBS1KWrWG+RvUQdO0aRgFMEKEV9ury9RfYS9dwYSQJOEaAU9eny9hbZS9RzYyQJOEUgCimudoqAXWW75cK32L3MqehhTtWWlSWBkAlEIcUzIdeRxdWWQBRtorZXwLORQBUEongDUIpVJCQBL42iTSTgslgFEtARiOINUJDi6tVpHknrALsQNWxYnRFzFG3CBQysIwkYAlG8AQpSPHOGnUYX2lmDBnWaQRRtwgUMrCMJUIpsA18ToBTZEkjgGwJR9ArYU3SshVGKjiWM1Y2UAKUYKV43CqcU3cgTa1kbApRibTgn+iyUYqLTw8rVmAClWGPgSTwdpZjErLBOcRGgFOMin6DzUooJSgarEjsBSjH2FMRfAUox/hywBskhQCkmJxex1YRSjA09T5xAApRiApNS6ypRirUmzvMlmQClmOTs1KhulGKNQPM0ThBIpBTXrVuHbdu2YdGiRThx4gQGDhyIadOmoWPHjpFAPXz4cOA55JZFqc/bb7+NZcuWoUWLFoW6HDhwANOnT8eLL76Iiy++GKNHj8Ztt92GJk2aqOr7T//0T6bsp59+GhdccIHqNRL04IMP4rrrrsM118ijHis/KMXK2fGV6SOQeClqxVJNajRS/OSTTzB37lx85zvfwY9//GP06NHDnPLIkSO44447cOONN+KWW24x/54yZQo6deqE4cOHB1br4MGDGDFiBE6fPg35MNBI8de//jX+8R//ESdPnkTLli1x6NAhzJw5s46oA0/sCaAUbWgxNu0EEiFFb0/rhhtuwOWXX45PP/20Xk/xRz/6kemNzZkzB/v27UOvXr0wdepUtGvXzuRJBPPwww9Dns5z3nnnYcKECbj99tsDe2x5KXbp0gWvv/46du/ejVGjRmHSpEk4//zzTdmrVq0yf1599dV44oknMH/+fJx77rmm57hw4UKsWLECzZo1MzGbNm3C+vXrTf3LSf3LL7/EI488YqS2Y8eOOlLctWuXuU6pjxzeaxWB7ty5E3fddRd++MMfYsaMGUaIlV4/pZj2tzmvz4ZA7FL09rQGDBiADz74wIhMROcfPouE7rvvPjz66KNo1aoVNmzYgOeff94I6ayzzsKYMWNw7bXXYsiQIWbYLT02GVqKZKXnVux48803ze9liN64cWM89thjaN68uZHe559/jtmzZ+PYsWP4+c9/bobw3/3ud41spXcnQip2iEBFcgsWLDBlljp+//vf47XXXkPXrl1NLzTfU/zoo48wcuRITJ48Gd27dzf1uPvuu82DG6TM/J9/93d/hy1bthhWP/jBD0pef1CPlVK0ecswNu0EYpdisZ6WzNlJT8gvRUmGyEN6ajJs9B7vvvsuZs2ahZUrV+LCCy+0ypv0FAcNGmSEm5+33Lt3L8aPH28k9P7772Pr1q146KGH0KhRI7z00kt1/u09mfTWRGh33nknrr/++pL1+Oyzz/DAAw8YkcnQXOpebvjsnWct1vus5vopRavmwuCUE4hdisXe7N7hp3ehRXpE9957L5588kn07t3b9O46d+6Mpk2b4pVXXjG9rqAha7F8ihRFTjIMveyyy0yIZp7RX5YM+ceOHYurrrrKDL2l91rskEUbuQaRd58+fbB9+/Z6UpT5QultvvPOO0bKb731Frp161by+qq5fkox5e9yXp4VgURK8Y033sAzzzxTdPVZhPLxxx/j1VdfxbPPPouGDRtizZo1eO+990pKUaQTNHwuJkXpPcqqsmZ1d//+/UasIulx48aZHqUcIn0pJ3/IcF3mKWWlWXqm0uvzS1HmGGUF++yzzzbyb9++vZGi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" name="3652b5b700b2717a2421a56a97fdec15.png"></div>
+<p><a href="https://cdn.rawgit.com/baked-pan/markdown/master/nagging/C%E7%BC%96%E7%A8%8B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.md">html格式查看</a></p>
+</div>
+
+</div></div>
+</body></html>
